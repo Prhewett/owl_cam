@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-capture_pi.py
+capture_pi3.py
 
 Simple utility to capture images from a Raspberry Pi camera using Picamera2.
 
 Usage examples:
   Single capture:
-    python3 capture_pi.py --single --outdir ./images
+    python3 capture_pi3.py --single --outdir ./images
 
   Timelapse (every 5s, 10 frames):
-    python3 capture_pi.py --timelapse --interval 5 --count 10 --outdir ./images
+    python3 capture_pi3.py --timelapse --interval 5 --count 10 --outdir ./images
 
   Button-triggered capture (GPIO pin 17, falling edge):
-    python3 capture_pi.py --button --button-pin 17 --outdir ./images
+    python3 capture_pi3.py --button --button-pin 17 --outdir ./images
 
   Single capture and upload to remote server via SCP:
-    python3 capture_pi.py --single --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ubuntu --remote-path /home/ubuntu/uploads --ssh-key /home/pi/.ssh/mykey.pem
+    python3 capture_pi3.py --single --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ubuntu --remote-path /home/ubuntu/uploads --ssh-key /home/pi/.ssh/mykey.pem
 
   Timelapse and build/upload index:
-    python3 capture_pi.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ... --remote-user ubuntu --remote-path /home/ubuntu/uploads --build-index
+    python3 capture_pi3.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ... --remote-user ubuntu --remote-path /home/ubuntu/uploads --build-index
 
 Requirements:
   - Raspberry Pi OS with libcamera (Bullseye/Bookworm or later)
