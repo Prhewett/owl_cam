@@ -15,10 +15,10 @@ Usage examples:
     python3 capture_pi3.py --button --button-pin 17 --outdir ./images
 
   Single capture and upload to remote server via SCP:
-    python3 capture_pi3.py --single --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ubuntu --remote-path /home/ubuntu/uploads --ssh-key /home/pi/.ssh/mykey.pem
+    python3 capture_pi3.py --single --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ec2-user --remote-path /home/ec2-user/html --ssh-key /home/pi/.ssh/mykey.pem
 
   Timelapse and build/upload index:
-    python3 capture_pi3.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ... --remote-user ubuntu --remote-path /home/ubuntu/uploads --build-index
+    python3 capture_pi3.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ec2-user --remote-path /home/ec2-user/html --ssh-key /home/pi/.ssh/mykey.pem --build-index
 
 Requirements:
   - Raspberry Pi OS with libcamera (Bullseye/Bookworm or later)
