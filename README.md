@@ -1,6 +1,7 @@
 Quick setup / notes
 
 Install required system packages (run on the Pi):
+
 Update the system: sudo apt update && sudo apt full-upgrade -y
 Install libcamera apps and Picamera2 (on Raspberry Pi OS these are available in the repos): sudo apt install -y python3-picamera2 python3-libcamera libcamera-apps
 If you want the command-line test tool: rpicam-still -o test.jpg
