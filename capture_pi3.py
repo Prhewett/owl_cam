@@ -18,7 +18,8 @@ Usage examples:
     python3 capture_pi3.py --single --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ec2-user --remote-path /home/ec2-user/html --ssh-key /home/pi/.ssh/mykey.pem
 
   Timelapse and build/upload index:
-    python3 capture_pi3.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ec2-user --remote-path /home/ec2-user/html --ssh-key /home/pi/.ssh/mykey.pem --build-index
+    python3 capture_pi3.py --timelapse --interval 10 --count 100 --outdir ./images --scp --remote-host ec2-1-2-3-4.compute-1.amazonaws.com --remote-user ec2-user 
+    --remote-path /home/ec2-user/html --ssh-key /home/pi/.ssh/mykey.pem --build-index
 
 Requirements:
   - Raspberry Pi OS with libcamera (Bullseye/Bookworm or later)
@@ -110,7 +111,7 @@ def build_index_html(outdir, title="Image Index"):
     Build a simple index.html in outdir that lists image files found there.
     Returns the path to the generated index file.
     """
-    image_exts = ("jpg", "jpeg", "png", "gif", "webp")
+    image_exts = ("jpg", "jpeg", "png", "gif", "webp", "mp4")
     try:
         entries = [f for f in os.listdir(outdir) if os.path.splitext(f)[1].lstrip(".").lower() in image_exts]
     except FileNotFoundError:
