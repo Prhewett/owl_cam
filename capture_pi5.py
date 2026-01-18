@@ -410,9 +410,8 @@ def main():
             entries = []
         # Sort by modification time descending (newest first)
         entries.sort(key=lambda fn: os.path.getmtime(os.path.join(args.outdir, fn)), reverse=True)
-
-  
-
+        for fn in entries:  
+            print("file name: ",fn)
   
     picam2.stop()
 
