@@ -399,7 +399,7 @@ def main():
     finally:
         # added by pete to create the index at theend and upload all at once
         #if build_index:
-        idx = build_index_html(outdir, title=index_title)
+        idx = build_index_html(arg.outdir, title=index_title)
         if idx and scp_config:
             _scp_upload(idx, **scp_config)  
     picam2.stop()
