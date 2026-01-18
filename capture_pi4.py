@@ -114,7 +114,7 @@ def _scp_upload(local_path, remote_user, remote_host, remote_path, ssh_key=None,
         print("SCP upload failed:", stderr.strip())
         return False
 
-def build_index_html(outdir, title="Image Index"):
+def build_index_html(outdir, title="Owl box Timelapse Image Index"):
     """
     Build a simple index.html in outdir that lists image files found there.
     Returns the path to the generated index file.
@@ -399,7 +399,7 @@ def main():
     finally:
         # added by pete to create the index at theend and upload all at once
         #if build_index:
-        idx = build_index_html(args.outdir, title=index_title)
+        idx = build_index_html(args.outdir, title="Owl Box Timelapse Image Index")
         if idx and scp_config:
             _scp_upload(idx, **scp_config)  
     picam2.stop()
