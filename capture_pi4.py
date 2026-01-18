@@ -59,7 +59,7 @@ except Exception:
     PIL_AVAILABLE = False
 
 def timestamped_filename(outdir, prefix="image", ext="jpg"):
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")[:-3]
     return os.path.join(outdir, f"{prefix}_{ts}.{ext}")
 
 def ensure_outdir(path):
