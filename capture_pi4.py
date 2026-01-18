@@ -277,12 +277,12 @@ def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_in
             if annotated:
                 print(f"[{i+1}] Annotated with timestamp: {ts_text}")
             print(f"[{i+1}] Saved: {fname}")
-            if scp_config:
-                _scp_upload(fname, **scp_config)
+            #if scp_config:
+            #    _scp_upload(fname, **scp_config)
             if build_index:
                 idx = build_index_html(outdir, title=index_title)
-                if idx and scp_config:
-                    _scp_upload(idx, **scp_config)
+            #    if idx and scp_config:
+            #        _scp_upload(idx, **scp_config)
             i += 1
             time.sleep(interval)
     except KeyboardInterrupt:
