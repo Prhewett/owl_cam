@@ -397,12 +397,23 @@ def main():
         elif args.button:
             button_capture(picam2, args.outdir, args.button_pin, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title)
     finally:
-        # added by pete to create the index at theend and upload all at once
+        # added by pete to create the index at the end and upload all at once
         #if build_index:
         idx = build_index_html(args.outdir, title="Owl Box Timelapse Image Index")
         if idx and scp_config:
             print ("inside idx if")
             _scp_upload(idx, **scp_config)  
+        image_exts = ("jpg", "jpeg", "png", "gif", "webp", "mp4")
+        try:
+            entries = [f for f in os.listdir(args.outdir) if os.path.splitext(f)[1].lstrip(".").lower() in image_exts]
+        except FileNotFoundError:
+            entries = []
+        # Sort by modification time descending (newest first)
+        entries.sort(key=lambda fn: os.path.getmtime(os.path.join(args.outdir, fn)), reverse=True)
+
+  
+
+  
     picam2.stop()
 
 if __name__ == "__main__":
