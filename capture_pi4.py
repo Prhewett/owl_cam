@@ -398,8 +398,8 @@ def main():
             button_capture(picam2, args.outdir, args.button_pin, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title)
     finally:
         # added by pete to create the index at theend and upload all at once
-        if build_index:
-            idx = build_index_html(outdir, title=index_title)
+        #if build_index:
+        idx = build_index_html(outdir, title=index_title)
         if idx and scp_config:
             _scp_upload(idx, **scp_config)  
     picam2.stop()
