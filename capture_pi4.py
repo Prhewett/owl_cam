@@ -401,6 +401,7 @@ def main():
         #if build_index:
         idx = build_index_html(args.outdir, title="Owl Box Timelapse Image Index")
         if idx and scp_config:
+            print "inside idx if"
             _scp_upload(idx, **scp_config)  
     picam2.stop()
 
