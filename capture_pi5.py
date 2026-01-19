@@ -154,7 +154,7 @@ def build_index_html(outdir, title="Owl box Timelapse Image Index"):
     html_lines.extend([
             "    <div class='card'>",
             f"      <a href='timelapse.mp4'><img src='thumbnail.jpg' alt='timelapse.mp4'></a>",
-            #f"      <div class='meta'>{path} &middot; {mtime} &middot; {size_kb} KB</div>",
+            f"      <div class='meta'>Time Lapse video.</div>",
             "    </div>"
         ])
     for fn in entries:
