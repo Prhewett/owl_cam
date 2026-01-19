@@ -150,7 +150,13 @@ def build_index_html(outdir, title="Owl box Timelapse Image Index"):
         f"  <h1>{safe_title}</h1>",
         "  <div class='grid'>"
     ]
-
+    # added a div section to create a thumbnail image href point to the timelapse
+    html_lines.extend([
+            "    <div class='card'>",
+            f"      <a href='timelapse.mp4'><img src='thumbnail.jpg' alt='timelapse.mp4'></a>",
+            #f"      <div class='meta'>{path} &middot; {mtime} &middot; {size_kb} KB</div>",
+            "    </div>"
+        ])
     for fn in entries:
         path = html.escape(fn)
         full_path = os.path.join(outdir, fn)
