@@ -401,7 +401,6 @@ def main():
         #if build_index:
         idx = build_index_html(args.outdir, title="Owl Box Timelapse Image Index")
         if idx and scp_config:
-            print ("inside idx if")
             _scp_upload(idx, **scp_config)  
         image_exts = ("jpg", "jpeg", "png", "gif", "webp", "mp4")
         try:
@@ -410,8 +409,13 @@ def main():
             entries = []
         # Sort by modification time descending (newest first)
         entries.sort(key=lambda fn: os.path.getmtime(os.path.join(args.outdir, fn)), reverse=True)
+        # and then uplaod them all
         for fn in entries:  
-            print("file name: ",fn)
+            _scp_upload(fn, **scp_config)
+        
+
+
+  
   
     picam2.stop()
 
