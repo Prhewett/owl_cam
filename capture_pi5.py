@@ -417,6 +417,9 @@ def main():
             fn = args.outdir + "/" + fn
             #print (fn)
             _scp_upload(fn, **scp_config)
+        # created a thumbnail of the last iage and upload it
+        shutil.copy2(fn, "thumbnail.jpg")
+        _scp_upload("thumbnail.jpg", **scp_config)
         
 
 
