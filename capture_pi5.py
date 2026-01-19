@@ -60,7 +60,7 @@ except Exception:
 
 def timestamped_filename(outdir, prefix="image", ext="jpg"):
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    print ("file name date time string is:", ts)
+    #print ("file name date time string is:", ts)
     return os.path.join(outdir, f"{prefix}_{ts}.{ext}")
 
 def ensure_outdir(path):
@@ -278,6 +278,7 @@ def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_in
             if annotated:
                 print(f"[{i+1}] Annotated with timestamp: {ts_text}")
             print(f"[{i+1}] Saved: {fname}")
+            # Pete removed the following and put it in main at the end.
             #if scp_config:
             #    _scp_upload(fname, **scp_config)
             # remove by Pete as we are doing it once at the end - not at every image
