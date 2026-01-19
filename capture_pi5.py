@@ -413,7 +413,7 @@ def main():
         # and then uplaod them all
         for fn in entries:  
             fn = args.outdir + "/" + fn
-            print (fn)
+            #print (fn)
             _scp_upload(fn, **scp_config)
         
 
