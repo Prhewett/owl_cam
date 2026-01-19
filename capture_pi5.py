@@ -411,6 +411,8 @@ def main():
         entries.sort(key=lambda fn: os.path.getmtime(os.path.join(args.outdir, fn)), reverse=True)
         # and then uplaod them all
         for fn in entries:  
+            fn = args.outdir + fn
+            print (fn)
             _scp_upload(fn, **scp_config)
         
 
