@@ -427,9 +427,8 @@ def main():
         shutil.copy2(fn, "thumbnail.jpg")
         _scp_upload("thumbnail.jpg", **scp_config)
     #Added debug for stopping camera
-    now = datetime.datetime.now()
-    time_string = now.strftime("%H:%M:%S")
-    print("######## Stopping camera inside python at: ", time_string)
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print("######## Stopping camera inside python at: ", now)
     picam2.stop()
     picam2.close()
 
