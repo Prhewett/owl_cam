@@ -431,6 +431,7 @@ def main():
     time_string = now.strftime("%H:%M:%S")
     print("######## Stopping camera inside python at: ", time_string)
     picam2.stop()
+    picam2.close()
 
 if __name__ == "__main__":
     main()
