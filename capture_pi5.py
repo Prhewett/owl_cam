@@ -426,11 +426,8 @@ def main():
         # created a thumbnail of the last iage and upload it
         shutil.copy2(fn, "thumbnail.jpg")
         _scp_upload("thumbnail.jpg", **scp_config)
-        
-
-
-  
-  
+    #Added debug for stopping camera
+    print("######## Stopping camera inside python at $(date)")
     picam2.stop()
 
 if __name__ == "__main__":
