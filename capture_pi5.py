@@ -194,19 +194,23 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
     Annotate the saved image with a timestamp (draw text on the image).
     Uses Pillow (PIL). If PIL is not available, this is a no-op.
     """
+    print("Starting Annotate subroutine")
     if not PIL_AVAILABLE:
         print("Pillow (PIL) not available; skipping image annotation.")
         return False
 
     if text is None:
+        print("inside txt is none")
         text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     try:
+        print("inside try, about to open first image")
         img = Image.open(image_path).convert("RGB")
         draw = ImageDraw.Draw(img)
         width, height = img.size
 
         # Choose font - try provided font_path, then DejaVuSans, otherwise default
+        print("inside try, choose Font")
         font_size = max(14, width // 40)
         font = None
         tried = []
@@ -228,6 +232,7 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
             font = ImageFont.load_default()
 
         # Measure text
+        print("inside try, measure text")
         try:
             text_bbox = draw.textbbox((0, 0), text, font=font)
             text_w = text_bbox[2] - text_bbox[0]
@@ -246,9 +251,10 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
 
         # Draw text in white
         draw.text((x, y), text, font=font, fill=(255, 255, 255))
-
+        print("about to overwrite image")
         # Overwrite original file (keep JPEG quality reasonable)
         img.save(image_path, quality=85)
+        print("finished overwriting image")
         return True
     except Exception as e:
         print("Failed to annotate image:", e)
