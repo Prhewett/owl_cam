@@ -439,7 +439,7 @@ def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print("######## Stopping camera inside python at: ", now)
     picam2.stop()
-    if args.debug
+    if args.debug:
         print("######## after picam.stop: ", now)
     picam2.close()
     print("######## after picam.close: ", now)
