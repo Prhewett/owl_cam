@@ -366,7 +366,7 @@ def main():
     parser.add_argument("--index-title", default="Image Index", help="Title for generated index.html")
 
     # Pete: debug options
-    parser.add_argument("--debug", action="store_true" help="will cause the script to output various printed debug lines")
+    parser.add_argument("--debug", action="store_true", help="will cause the script to output various printed debug lines")
   
     args = parser.parse_args()
 
