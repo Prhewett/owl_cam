@@ -365,6 +365,9 @@ def main():
     parser.add_argument("--build-index", action="store_true", help="Build a simple index.html in outdir listing captured images and upload it when SCP is enabled")
     parser.add_argument("--index-title", default="Image Index", help="Title for generated index.html")
 
+    # Pete: debug options
+    parser.add_argument("--debug", action="store_true" help="will cause the script to output various printed debug lines")
+  
     args = parser.parse_args()
 
     scp_config = None
@@ -424,7 +427,7 @@ def main():
             entries = []
         # Sort by modification time descending (newest first)
         entries.sort(key=lambda fn: os.path.getmtime(os.path.join(args.outdir, fn)), reverse=True)
-        # and then uplaod them all
+        # and then upload them all
         for fn in entries:  
             fn = args.outdir + "/" + fn
             #print (fn)
@@ -436,7 +439,13 @@ def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print("######## Stopping camera inside python at: ", now)
     picam2.stop()
+    if args.debug
+        print("######## after picam.stop: ", now)
     picam2.close()
-
+    print("######## after picam.close: ", now)
+    print("######## sleeping for 5: ", now)
+    time.sleep(5)
+    print("######## sleeping complete - end of puthon: ", now)
+  
 if __name__ == "__main__":
     main()
