@@ -145,6 +145,8 @@ def build_index_html(outdir, title="Owl box Timelapse Image Index"):
         "    img { max-width: 100%; height: auto; display: block; }",
         "    .meta { font-size: 0.85rem; color: #555; margin-top: 6px; }",
         "  </style>",
+        "<!-- Standard Favicon link -->",
+        "<link rel="icon" href="favicon.ico" type="image/x-icon">",
         "</head>",
         "<body>",
         f"  <h1>{safe_title}</h1>",
