@@ -365,10 +365,13 @@ def main():
 
     # Index generation/upload options
     parser.add_argument("--build-index", action="store_true", help="Build a simple index.html in outdir listing captured images and upload it when SCP is enabled")
-    parser.add_argument("--index-title", default="Image Index", help="Title for generated index.html")
+    parser.add_argument("--index-title", default="Owl Box Image Index", help="Title for generated index.html")
 
     # Pete: debug options
     parser.add_argument("--debug", action="store_true", help="will cause the script to output various printed debug lines")
+    # Pete - Add argument to flip or rotate the image
+    parser.add_argument("--hflip", action="store_true", help="will flip the image(s) at capture, horizontally. ")
+    parser.add_argument("--vflip", action="store_true", help="will flip the image(s) at capture, vertically. ")
   
     args = parser.parse_args()
 
@@ -399,6 +402,13 @@ def main():
         cfg = picam2.create_still_configuration(main={"size": (args.width, args.height)})
     else:
         cfg = picam2.create_still_configuration()
+
+    # added by pete to flip the image
+    if args.vflip
+        cfg = picam2.create_still_configuration(transform=libcamera.Transform(vflip=1))
+    if args.hflip
+        cfg = picam2.create_still_configuration(transform=libcamera.Transform(hflip=1))
+  
     picam2.configure(cfg)
 
     # Start camera and give AE/AGC a moment to settle
