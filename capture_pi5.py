@@ -411,7 +411,7 @@ def main():
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(vflip=1))
     if args.hflip:
         if args.debug:
-            print("inside vflip. doing vflip transform now")
+            print("inside hflip. doing hflip transform now")
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(hflip=1))
     if args.debug:
           print("running picam configure....now")
