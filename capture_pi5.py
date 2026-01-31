@@ -406,10 +406,15 @@ def main():
 
     # added by pete to flip the image
     if args.vflip:
+        if args.debug:
+            print("inside vflip. doing vflip transform now")
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(vflip=1))
     if args.hflip:
+        if args.debug:
+            print("inside vflip. doing vflip transform now")
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(hflip=1))
-  
+    if args.debug:
+          print("running picam configure....now")
     picam2.configure(cfg)
 
     # Start camera and give AE/AGC a moment to settle
@@ -449,16 +454,19 @@ def main():
         shutil.copy2(fn, "thumbnail.jpg")
         _scp_upload("thumbnail.jpg", **scp_config)
     #Added debug for stopping camera
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print("######## Stopping camera inside python at: ", now)
+    if args.debug:
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print("######## Stopping camera inside python at: ", now)
     picam2.stop()
     if args.debug:
         print("######## after picam.stop: ", now)
     picam2.close()
-    print("######## after picam.close: ", now)
-    print("######## sleeping for 5: ", now)
+    if args.debug:
+        print("######## after picam.close: ", now)
+        print("######## sleeping for 5: ", now)
     time.sleep(5)
-    print("######## sleeping complete - end of puthon: ", now)
+    if args.debug:
+        print("######## sleeping complete - end of puthon: ", now)
   
 if __name__ == "__main__":
     main()
