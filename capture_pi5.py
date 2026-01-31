@@ -404,9 +404,9 @@ def main():
         cfg = picam2.create_still_configuration()
 
     # added by pete to flip the image
-    if args.vflip
+    if args.vflip:
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(vflip=1))
-    if args.hflip
+    if args.hflip:
         cfg = picam2.create_still_configuration(transform=libcamera.Transform(hflip=1))
   
     picam2.configure(cfg)
