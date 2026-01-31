@@ -36,6 +36,7 @@ from datetime import datetime
 import subprocess
 import shutil
 import html
+import libcamera
 
 try:
     from picamera2 import Picamera2
