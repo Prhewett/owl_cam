@@ -56,6 +56,32 @@ try:
 except Exception:
     PIL_AVAILABLE = False
 
+def image_transpose(input_path, output_path, degrees):
+    """
+    Rotates an image using the transpose method for 90-degree increments.
+    Example Usage:
+    image_transpose('input_image.jpg', 'rotated_transpose_ccw.jpg', 90)
+    """
+    try:
+        with Image.open(input_path) as img:
+            if degrees == 90:
+                # rotate 90 degrees anti clockwise.
+                rotated_img = img.transpose(Image.ROTATE_90)
+            elif degrees == 180:
+                # rotate 180 degrees counter-clockwise.
+                rotated_img = img.transpose(Image.ROTATE_180)
+            elif degrees == 270:
+                # rotate 270 degrees counter-clockwise(90 degrees clockwise.
+                rotated_img = img.transpose(Image.ROTATE_270)
+            else:
+                raise ValueError("Invalid rotation amount. Use '90', '180', or '270'")
+            rotated_img.save(output_path)
+            print(f"Image rotated using transpose and saved to {output_path}")
+    except FileNotFoundError:
+        print(f"Error: {input_path} not found. Please provide a valid image path.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 def timestamped_filename(outdir, prefix="image", ext="jpg"):
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     #print ("file name date time string is:", ts)
