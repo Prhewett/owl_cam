@@ -228,7 +228,7 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
 
     if text is None:
         text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        if debug: print("inside annotation - txt = none")
+        if args.debug: print("inside annotation - txt = none")
 
     try:
         img = Image.open(image_path).convert("RGB")
@@ -288,7 +288,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
     picam2.capture_file(fname)
     # Annotate image with timestamp (draw on image) if Pillow available
     ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    if debug: print("Args.rotate value is: ", args.rotate)
+    if args.debug: print("Args.rotate value is: ", args.rotate)
     image_rotate(fname, args.rotate)
     annotated = _annotate_image_with_timestamp(fname, text=ts_text)
     if annotated:
