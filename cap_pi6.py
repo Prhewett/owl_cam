@@ -288,7 +288,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
     picam2.capture_file(fname)
     # Annotate image with timestamp (draw on image) if Pillow available
     ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print("Args.rotate value is: ", rotate_degrees)
+    # rotate the image if applicable
     image_rotate(fname, rotate_degrees)
     annotated = _annotate_image_with_timestamp(fname, text=ts_text)
     if annotated:
@@ -310,6 +310,8 @@ def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_in
             fname = timestamped_filename(outdir, prefix=f"img{i:04d}")
             picam2.capture_file(fname)
             ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            # rotate the image if applicable
+            image_rotate(fname, rotate_degrees)
             annotated = _annotate_image_with_timestamp(fname, text=ts_text)
             if annotated:
                 print(f"[{i+1}] Annotated with timestamp: {ts_text}")
@@ -348,7 +350,7 @@ def main():
     # Pete - Add argument to flip or rotate the image
     parser.add_argument("--hflip", action="store_true", help="will flip the image(s) at capture, horizontally. ")
     parser.add_argument("--vflip", action="store_true", help="will flip the image(s) at capture, vertically. ")
-    parser.add_argument("--rotate", type=int, default=90, help="will rotate the image(s) (default 90) degrees at capture, counter clockwise. Use 270 for 90 clockwise ")
+    parser.add_argument("--rotate", type=int, default=0, help="will rotate the image(s) (default 90) degrees at capture, counter clockwise. Use 270 for 90 clockwise ")
   
     args = parser.parse_args()
 
@@ -379,10 +381,6 @@ def main():
         cfg = picam2.create_still_configuration(main={"size": (args.width, args.height)})
     else:
         cfg = picam2.create_still_configuration()
-
-    # added by pete to rotate the image
-    if args.rotate:
-        print("args.rotate found. value is: ", args.rotate)  
     picam2.configure(cfg)
 
     # Start camera and give AE/AGC a moment to settle
