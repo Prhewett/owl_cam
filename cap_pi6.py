@@ -380,7 +380,7 @@ def main():
 
     # added by pete to rotate the image
     if args.rotate:
-        print("args.rotate found. value is: ", agrs.rotate)  
+        print("args.rotate found. value is: ", args.rotate)  
     picam2.configure(cfg)
 
     # Start camera and give AE/AGC a moment to settle
