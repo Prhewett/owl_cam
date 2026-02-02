@@ -64,7 +64,10 @@ def image_rotate(input_path, degrees):
     """
     try:
         with Image.open(input_path) as img:
-            if degrees == 90:
+            if degrees == 0:
+                # default value nop and return
+                return
+            elif degrees == 90:
                 # rotate 90 degrees anti clockwise.
                 rotated_img = img.transpose(Image.ROTATE_90)
             elif degrees == 180:
