@@ -76,7 +76,7 @@ def image_rotate(input_path, degrees):
             else:
                 raise ValueError("Invalid rotation amount. Use '90', '180', or '270'")
             rotated_img.save(input_path)
-            print(f"Image rotated using transpose and saved to {output_path}")
+            print(f"Image rotated using transpose and saved to {input_path}")
     except FileNotFoundError:
         print(f"Error: {input_path} not found. Please provide a valid image path.")
     except Exception as e:
