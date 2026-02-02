@@ -282,7 +282,7 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
         print("Failed to annotate image:", e)
         return False
 
-def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index"):
+def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index", args.rotate=None):
     ensure_outdir(outdir)
     fname = timestamped_filename(outdir)
     picam2.capture_file(fname)
@@ -302,7 +302,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
         if idx and scp_config:
             _scp_upload(idx, **scp_config)
 
-def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index"):
+def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index", args.rotate=None):
     ensure_outdir(outdir)
     i = 0
     try:
@@ -395,11 +395,9 @@ def main():
 
     try:
         if args.single:
-            single_capture(picam2, args.outdir, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title)
+            single_capture(picam2, args.outdir, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, args.rotate)
         elif args.timelapse:
-            timelapse_capture(picam2, args.outdir, args.interval, args.count, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title)
-        elif args.button:
-            button_capture(picam2, args.outdir, args.button_pin, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title)
+            timelapse_capture(picam2, args.outdir, args.interval, args.count, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, args.rotate)
     finally:
         # added by pete to create the index at the end and upload all at once
         #if build_index:
