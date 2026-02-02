@@ -56,11 +56,11 @@ try:
 except Exception:
     PIL_AVAILABLE = False
 
-def image_transpose(input_path, output_path, degrees):
+def image_rotate(input_path, degrees):
     """
     Rotates an image using the transpose method for 90-degree increments.
     Example Usage:
-    image_transpose('input_image.jpg', 'rotated_transpose_ccw.jpg', 90)
+    image_transpose('input_image.jpg', 90)
     """
     try:
         with Image.open(input_path) as img:
@@ -75,7 +75,7 @@ def image_transpose(input_path, output_path, degrees):
                 rotated_img = img.transpose(Image.ROTATE_270)
             else:
                 raise ValueError("Invalid rotation amount. Use '90', '180', or '270'")
-            rotated_img.save(output_path)
+            rotated_img.save(input_path)
             print(f"Image rotated using transpose and saved to {output_path}")
     except FileNotFoundError:
         print(f"Error: {input_path} not found. Please provide a valid image path.")
@@ -288,6 +288,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
     picam2.capture_file(fname)
     # Annotate image with timestamp (draw on image) if Pillow available
     ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    image_rotate(fname, args.degrees)
     annotated = _annotate_image_with_timestamp(fname, text=ts_text)
     if annotated:
         print("Annotated with timestamp:", ts_text)
