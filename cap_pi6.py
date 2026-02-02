@@ -302,7 +302,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
         if idx and scp_config:
             _scp_upload(idx, **scp_config)
 
-def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index", args.rotate=None):
+def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index", args_rotate=None):
     ensure_outdir(outdir)
     i = 0
     try:
