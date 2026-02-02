@@ -282,14 +282,14 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
         print("Failed to annotate image:", e)
         return False
 
-def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index", args_rotate=None):
+def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index", rotate_degrees=None):
     ensure_outdir(outdir)
     fname = timestamped_filename(outdir)
     picam2.capture_file(fname)
     # Annotate image with timestamp (draw on image) if Pillow available
     ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print("Args.rotate value is: ", args_rotate)
-    image_rotate(fname, args_rotate)
+    print("Args.rotate value is: ", rotate_degrees)
+    image_rotate(fname, rotate_degrees)
     annotated = _annotate_image_with_timestamp(fname, text=ts_text)
     if annotated:
         print("Annotated with timestamp:", ts_text)
@@ -302,7 +302,7 @@ def single_capture(picam2, outdir, scp_config=None, build_index=False, index_tit
         if idx and scp_config:
             _scp_upload(idx, **scp_config)
 
-def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index", args_rotate=None):
+def timelapse_capture(picam2, outdir, interval, count, scp_config=None, build_index=False, index_title="Image Index", rotate_degrees=None):
     ensure_outdir(outdir)
     i = 0
     try:
@@ -395,9 +395,9 @@ def main():
 
     try:
         if args.single:
-            single_capture(picam2, args.outdir, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, args.rotate)
+            single_capture(picam2, args.outdir, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, rotate_degrees=args.rotate)
         elif args.timelapse:
-            timelapse_capture(picam2, args.outdir, args.interval, args.count, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, args.rotate)
+            timelapse_capture(picam2, args.outdir, args.interval, args.count, scp_config=scp_config, build_index=args.build_index, index_title=args.index_title, rotate_degrees=args.rotate)
     finally:
         # added by pete to create the index at the end and upload all at once
         #if build_index:
