@@ -346,7 +346,7 @@ def main():
     # Pete - Add argument to flip or rotate the image
     parser.add_argument("--hflip", action="store_true", help="will flip the image(s) at capture, horizontally. ")
     parser.add_argument("--vflip", action="store_true", help="will flip the image(s) at capture, vertically. ")
-    parser.add_argument("--rotate", type=int, default=90, help="will rotate the image(s) default 90) degrees at capture, clockwise. ")
+    parser.add_argument("--rotate", type=int, default=90, help="will rotate the image(s) (default 90) degrees at capture, counter clockwise. Use 270 for 90 clockwise ")
   
     args = parser.parse_args()
 
@@ -378,17 +378,9 @@ def main():
     else:
         cfg = picam2.create_still_configuration()
 
-    # added by pete to flip the image
-    if args.vflip:
-        if args.debug:
-            print("inside vflip. doing vflip transform now")
-        cfg = picam2.create_still_configuration(transform=libcamera.Transform(vflip=1))
-    if args.hflip:
-        if args.debug:
-            print("inside hflip. doing hflip transform now")
-        cfg = picam2.create_still_configuration(transform=libcamera.Transform(hflip=1))
-    if args.debug:
-          print("running picam configure....now")
+    # added by pete to rotate the image
+    if args.rotate:
+        print("args.rotate found. value is: ", agrs.rotate)  
     picam2.configure(cfg)
 
     # Start camera and give AE/AGC a moment to settle
