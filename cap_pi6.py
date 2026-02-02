@@ -282,14 +282,14 @@ def _annotate_image_with_timestamp(image_path, text=None, font_path=None):
         print("Failed to annotate image:", e)
         return False
 
-def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index", args.rotate=None):
+def single_capture(picam2, outdir, scp_config=None, build_index=False, index_title="Image Index", args_rotate=None):
     ensure_outdir(outdir)
     fname = timestamped_filename(outdir)
     picam2.capture_file(fname)
     # Annotate image with timestamp (draw on image) if Pillow available
     ts_text = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    if args.debug: print("Args.rotate value is: ", args.rotate)
-    image_rotate(fname, args.rotate)
+    print("Args.rotate value is: ", args_rotate)
+    image_rotate(fname, args_rotate)
     annotated = _annotate_image_with_timestamp(fname, text=ts_text)
     if annotated:
         print("Annotated with timestamp:", ts_text)
